@@ -1,22 +1,13 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
 import "./styles/index.scss";
 import { AboutPageAsync } from "./pages/AboutPage/AboutPage.async";
 import { MainPageAsync } from "./pages/MainPage/MainPage.async";
-
-export enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-}
+import { useTheme } from "./theme/useTheme";
 
 export default function App() {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
-
-  const toggleTheme = () => {
-    setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
-  };
-
+  const { theme, toggleTheme } = useTheme();
   return (
     <div className={`app ${theme}`}>
       <button onClick={toggleTheme}>TOGGLE</button>
